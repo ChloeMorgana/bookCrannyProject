@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from bookcranny.models import User, Book, Review
+from bookCranny.models import User, Book, Rating, Genre
 
 
 class UserForm(forms.ModelForm):
@@ -12,31 +12,24 @@ class UserForm(forms.ModelForm):
 
 
 class BookForm(forms.ModelForm):
-#    GENRES =( 
-#        ("1", "G1"), 
-#        ("2", "G2"), 
-#        ("3", "G3"), 
-#        ("4", "G4"), 
-#        ("5", "G5"), 
-#    )
-        
-    isbn = forms.DecimalField(min_digits = 10, max_digits=13, help_text = "Unique identifier of the book (10/13 digits long)")
-    title = forms.CharField(max_length=128, help_text = "Title of the book")
-    author = forms.CharField(max_length=128, help_text = "Author of the book")
-    description = forms.CharField(widget = forms.Textarea, max_length=1000, help_text = "Enter a short description for the book (maximum 1000 characters")
-#   genre = forms.ChoiceField(choices = GENRES)
-    reviews = forms.IntegerField(widget=forms.HiddenInput(), initial = 0)
+    GENRES = [Genre.objects.all()]
+    ISBN = forms.DecimalField(min_value = 1000000000, max_digits=13, help_text = "Unique identifier of the book (10/13 digits long)")
+    title = forms.CharField(max_length=100, help_text = "Title of the book")
+    author = forms.CharField(max_length=50, help_text = "Author of the book")
+    blurb = forms.CharField(widget = forms.Textarea, max_length=1000, help_text = "Enter a short description for the book (maximum 1000 characters")
+    genre = forms.ChoiceField(choices = GENRES)
     
     
     class Meta:
         model = Book
+        fields = ('ISBN', 'title', 'author', 'blurb')
 
 
-class ReviewForm(forms.ModelForm):
-    title = forms.CharField(max_length=128, help_text="Please enter a title for your review")
+class RatingForm(forms.ModelForm):
+    title = forms.CharField(max_length=100, help_text="Please enter a title for your review")
     stars = forms.DecimalField(widget=forms.HiddenInput(), min_value = 1, max_value = 5)
-    fullreview = forms.CharField(widget = forms.Textarea, help_text = "(Optional) A detailed review of the book")
+    review = forms.CharField(widget = forms.Textarea, help_text = "(Optional) A detailed review of the book")
 
     class Meta:
-        model = Review
-        exclude = ('isbn', 'reviewer')    
+        model = Rating
+        exclude = ('ISBN', 'username')

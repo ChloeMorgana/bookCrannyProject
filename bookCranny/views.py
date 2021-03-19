@@ -3,16 +3,16 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from bookcranny.models import User, Book, Review, Wishlist
-from bookcranny.forms import UserForm, BookForm, ReviewForm
+from bookCranny.models import User, Book, Rating, Wishlist
+from bookCranny.forms import UserForm, BookForm, RatingForm
 
 def index(request):
     books_list = Book.objects.order_by('-time')[:5]
-    reviews_list = Review.objects.order_by('-time')[:5]
+    ratings_list = Rating.objects.order_by('-time')[:5]
     
     context_dict = {}
     context_dict['books'] = books_list
-    context_dict['reviews'] = reviews_list
+    context_dict['reviews'] = ratings_list
     
     return render(request, 'bookcranny/index.html', context=context_dict)
 
@@ -42,7 +42,7 @@ def signup(request):
                              'registered': registered})
 
 
-def login(request):
+def user_login(request):
     if request.method =='POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -69,36 +69,36 @@ def books(request):
     return render(request, 'bookcranny/books.html', context=context_dict)
 
 
-def book(request, isbn):
-    book = Book.objects.filter(isbn = isbn)
+def book(request, ISBN):
+    book = Book.objects.filter(ISBN = ISBN)
     
     context_dict = {}
     context_dict['book'] = book
-    context_dict['isbn'] = isbn
+    context_dict['ISBN'] = ISBN
     
     return render(request, 'bookcranny/book.html', context=context_dict)
 
 
 def user(request, username):
-    profile = User.objects.filter(name = username)
-    reviews = Review.objects.filter(reviewer = username).order_by('-time')
-    wishlist = Wishlist.objects.filter(user = username).order_by('-time')
+    profile = User.objects.filter(username = username)
+    ratings = Rating.objects.filter(username = username).order_by('-time')
+    wishlist = Wishlist.objects.filter(username = username).order_by('-time')
     
     context_dict = {}
-    context_dict['reviews'] = reviews
+    context_dict['ratings'] = ratings
     context_dict['wishlist'] = wishlist
     context_dict['username'] = username
     
     return render(request, 'bookcranny/user.html', context=context_dict)
     
 
-def review(request):
-    form = ReviewForm()
+def rating(request):
+    form = RatingForm()
     
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
-            review = form.save()
+            rating = form.save()
             return redirect(reverse('bookcranny:book.html'))
         else:
             #DEBUG
@@ -106,10 +106,10 @@ def review(request):
     
     context_dict = {}
     context_dict['form'] = form
-    context_dict['isbn'] = form.cleaned_data['isbn']
-    context_dict['reviewer'] = form.cleaned_data['reviewer']
+    context_dict['ISBN'] = form.cleaned_data['ISBN']
+    context_dict['username'] = form.cleaned_data['username']
     
-    return render(request, 'bookcranny/review.html', context=context_dict)
+    return render(request, 'bookcranny/rating.html', context=context_dict)
 
 
 @login_required

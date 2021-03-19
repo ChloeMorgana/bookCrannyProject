@@ -7,7 +7,13 @@ class User(models.Model):
 
     def __str__(self):
         return self.username
+        
+class Genre(models.Model):
+    name= models.CharField(max_length=128, unique=True)
 
+    def __str__(self):
+        return self.name
+        
 class Book(models.Model):
     ISBN= models.CharField(max_length=13, unique=True)
     title = models.CharField(max_length=100)
@@ -21,17 +27,12 @@ class Book(models.Model):
 class Rating(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE)
     ISBN = models.ForeignKey(Book, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
     review = models.CharField(max_length=1000)
     stars = models.IntegerField(default=0)
 
     def __str__(self):
         return self.stars
-
-class Genre(models.Model):
-    name= models.CharField(max_length=128, unique=True)
-
-    def __str__(self):
-        return self.name
 
 class Wishlist(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE)
