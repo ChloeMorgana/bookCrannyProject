@@ -8,12 +8,12 @@ class UserForm(forms.ModelForm):
     
     class Meta:
         model = User
-        fields = ('username', 'password',)
+        fields = ('username', 'password')
 
 
 class BookForm(forms.ModelForm):
     GENRES = [Genre.objects.all()]
-    ISBN = forms.DecimalField(min_value = 1000000000, max_digits=13, help_text = "Unique identifier of the book (10/13 digits long)")
+    ISBN = forms.CharField(max_length=13, help_text = "Unique identifier of the book (10/13 digits long)")
     title = forms.CharField(max_length=100, help_text = "Title of the book")
     author = forms.CharField(max_length=50, help_text = "Author of the book")
     blurb = forms.CharField(widget = forms.Textarea, max_length=1000, help_text = "Enter a short description for the book (maximum 1000 characters")

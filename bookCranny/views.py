@@ -53,7 +53,7 @@ def user_login(request):
         # None if no matching credentials found
         if user:
             login(request, user)
-            return redirect(reverse('bookcranny:index'))
+            return redirect(reverse('bookCranny:index'))
         else:
             return HttpResponse("Invalid login details supplied")
     else:
@@ -71,10 +71,23 @@ def books(request):
 
 def book(request, ISBN):
     book = Book.objects.filter(ISBN = ISBN)
+    ratings = Rating.objects.get(ISBN = ISBN)
+    totratings = ratings.count()
+    
+    if ratings.count != 0:
+        # find the cumulative rating 
+        for r in ratings:
+            totstars += r.stars;
+        avgrating = totstars/totratings
+    else:
+        totstars = 0
+        avgrating = 0
     
     context_dict = {}
     context_dict['book'] = book
     context_dict['ISBN'] = ISBN
+    context_dict['totratings'] = totratings
+    context_dict['avgrating'] = avgrating
     
     return render(request, 'bookcranny/book.html', context=context_dict)
 
@@ -92,22 +105,24 @@ def user(request, username):
     return render(request, 'bookcranny/user.html', context=context_dict)
     
 
-def rating(request):
+def rating(request, ISBN, user):
     form = RatingForm()
     
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
             rating = form.save()
-            return redirect(reverse('bookcranny:book.html'))
+            return redirect(reverse('bookCranny:book.html'))
         else:
             #DEBUG
             print(form.errors)
     
     context_dict = {}
     context_dict['form'] = form
-    context_dict['ISBN'] = form.cleaned_data['ISBN']
-    context_dict['username'] = form.cleaned_data['username']
+    #ISBN of the reviewed book
+    context_dict['ISBN'] = ISBN
+    #username of the reviewer
+    context_dict['username'] = user
     
     return render(request, 'bookcranny/rating.html', context=context_dict)
 
@@ -123,7 +138,7 @@ def newbook(request):
             book.reviewcount = 0
             book.save()
             
-            return redirect(reverse('bookcranny:index'))
+            return redirect(reverse('bookCranny:index'))
         else:
             #DEBUG
             print(form.errors)
@@ -136,4 +151,4 @@ def newbook(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return redirect(reverse('bookcranny:index'))
+    return redirect(reverse('bookCranny:index'))
