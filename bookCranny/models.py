@@ -22,15 +22,14 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
-
 class Rating(models.Model):
     ratingID = models.AutoField(primary_key=True)
     username = models.ForeignKey(User, on_delete=models.CASCADE)
-    ISBN = models.ForeignKey(Book, on_delete=models.CASCADE)
+    ISBN = Book._meta.get_field('ISBN')
     title = models.CharField(max_length=100)
     review = models.CharField(max_length=1000)
     stars = models.IntegerField(default=0)
     time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.stars
+        return str(self.stars)
