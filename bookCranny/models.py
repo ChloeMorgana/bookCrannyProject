@@ -25,7 +25,7 @@ class Book(models.Model):
 class Rating(models.Model):
     ratingID = models.AutoField(primary_key=True)
     username = models.ForeignKey(User, on_delete=models.CASCADE)
-    ISBN = Book._meta.get_field('ISBN')
+    ISBN = models.ForeignKey(Book, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     review = models.CharField(max_length=1000)
     stars = models.IntegerField(default=0)
