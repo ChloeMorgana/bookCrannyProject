@@ -1,9 +1,11 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.urls import reverse
+from django.views import View
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from bookCranny.models import User, Book, Rating, Wishlist
+from bookCranny.models import Book, Rating, Wishlist
 from bookCranny.forms import UserForm, BookForm, RatingForm
 
 def index(request):
@@ -45,21 +47,7 @@ def book(request, ISBN):
     context_dict['totratings'] = totratings
     context_dict['avgrating'] = avgrating
     
-    return render(request, 'bookcranny/book.html', context=context_dict)
-
-
-def user(request, username):
-    profile = User.objects.filter(username = username)
-    ratings = Rating.objects.filter(username = username).order_by('-time')
-    wishlist = Wishlist.objects.filter(username = username).order_by('-time')
-    
-    context_dict = {}
-    context_dict['ratings'] = ratings
-    context_dict['wishlist'] = wishlist
-    context_dict['username'] = username
-    
-    return render(request, 'bookcranny/user.html', context=context_dict)
-    
+    return render(request, 'bookcranny/book.html', context=context_dict)    
 
 def rating(request, ISBN, user):
     form = RatingForm()
@@ -102,3 +90,51 @@ def newbook(request):
     context_dict = {'form': form}
     
     return render(request, 'bookcranny/newbook.html', context=context_dict)
+    
+class UserView(View):
+    def get_user_details(self, username):
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return None
+        
+        ratings = Rating.objects.filter(username = username).order_by('-time')
+        wishlist = Wishlist.objects.filter(username = username).order_by('-time')
+        
+        return (ratings, wishlist)
+    
+    def get(self, request, username):
+        try:
+            (ratings, wishlist) = self.get_user_details(username)
+        except TypeError:
+            return redirect(reverse('bookCranny:index'))
+            
+        context_dict = {}
+        context_dict['username'] = username
+        context_dict['ratings'] = ratings
+        context_dict['wishlist'] = wishlist
+        
+        return render(request, 'bookcranny/user.html', context=context_dict)
+    
+    @login_required    
+    def post(self, request, username):
+        try:
+            (ratings, wishlist) = self.get_user_details(username)
+        except TypeError:
+            return redirect(reverse('bookCranny:index'))
+        
+        form = UserForm(request.post, instance = user)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('bookCranny:user', username)
+        else:
+            print(form.errors)
+            
+        context_dict = {}
+        context_dict['username'] = username
+        context_dict['ratings'] = ratings
+        context_dict['wishlist'] = wishlist
+        context_dict['form'] = form
+        
+        return render(request, 'bookcranny/user.html', context=context_dict)
+        
