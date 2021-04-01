@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bookCranny'
+    'bookCranny',
+    'registration', 
 ]
 
 MIDDLEWARE = [
@@ -129,4 +130,13 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
-LOGIN_URL = 'bookCranny:login'
+#Login and registration
+
+# Users can register
+REGISTRATION_OPEN = True
+# Auto login after registration
+REGISTRATION_AUTO_LOGIN = True
+# Redirect to index after login
+LOGIN_REDIRECT_URL = 'bookCranny:index'
+
+LOGIN_URL = 'auth_login'

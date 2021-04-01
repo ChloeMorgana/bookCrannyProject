@@ -16,50 +16,6 @@ def index(request):
     
     return render(request, 'bookcranny/index.html', context=context_dict)
 
-
-def signup(request):
-    registered = False
-    
-    if request.method == 'POST':
-        user_form = UserForm(request.POST)
-        
-        if user_form.is_valid():
-            user = user_form.save()
-            
-            # hash password and update user object
-            user.set_password(user.password)
-            user.save()
-            
-            registered = True
-        else:
-            #DEBUG
-            print(user_form.errors)
-    else:
-        user_form = UserForm()
-    
-    return render(request, 'bookcranny/register.html',
-                  context = {'user_form': user_form,
-                             'registered': registered})
-
-
-def user_login(request):
-    if request.method =='POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        
-        user = authenticate(username=username, password=password)
-        
-        # details correct if User object exists
-        # None if no matching credentials found
-        if user:
-            login(request, user)
-            return redirect(reverse('bookCranny:index'))
-        else:
-            return HttpResponse("Invalid login details supplied")
-    else:
-        return render(request, 'bookcranny/login.html', context=context_dict)
-
-
 def books(request):
     books_list = Book.objects.order_by('-time')
     
@@ -146,9 +102,3 @@ def newbook(request):
     context_dict = {'form': form}
     
     return render(request, 'bookcranny/newbook.html', context=context_dict)
- 
- 
-@login_required
-def user_logout(request):
-    logout(request)
-    return redirect(reverse('bookCranny:index'))
