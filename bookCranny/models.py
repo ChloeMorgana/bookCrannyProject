@@ -34,3 +34,7 @@ class Rating(models.Model):
 
     def __str__(self):
         return str(self.stars)
+    
+    @property
+    def as_stars(self):
+        return "★" * self.stars + "☆" * (5 - self.stars)
