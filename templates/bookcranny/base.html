@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+	<head>
+		<title>
+			Book Cranny | {% block title_block %} base page {% endblock %}
+		</title>
+		<link rel="stylesheet" href="/static/styles.css">
+	</head>
+	<body>
+		<div id="header_bar">
+			<a href="{% url 'bookCranny:index' %}" class="a_button large_a_button">
+				Book Cranny
+			</a>
+			<a href="{% url 'bookCranny:books' %}" class="a_button large_a_button">
+				New Book
+			</a>
+			<a href="{% url 'bookCranny:index' %}" class="a_button large_a_button hb_right">
+				Sign Up
+			</a>
+			<a href="{% url 'bookCranny:index' %}" class="a_button large_a_button hb_right">
+				Log In
+			</a>
+		</div>
+		<div id="content">
+			{% block content_block %}
+				This is the base page. You should not be seeing this.
+			{% endblock %}
+		</div>
+	</body>
+</html>

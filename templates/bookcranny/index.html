@@ -1,0 +1,28 @@
+{% extends 'bookcranny/base.html' %}
+
+{% block title_block %} Home {% endblock %}
+{% block content_block %}
+
+<h1>Welcome to Book Cranny!</h1>
+
+<table>
+<tr>
+<th>
+Recently added books
+</th>
+</tr>
+
+{% if books %}
+	{% for book in books %}
+		<tr><td>
+			{{ book.title }} by {{ book.author }}
+			<a href="{% url 'bookCranny:book' book.ISBN%}" class="a_button hb_right">View</a>
+		</td></tr>
+	{% endfor %}
+{% else %}
+	<tr><td>There are no books in the database.</td></tr>
+{% endif %}
+
+</table>
+
+{% endblock %}
