@@ -28,10 +28,11 @@ def books(request):
 
 
 def book(request, ISBN):
-    book = Book.objects.filter(ISBN = ISBN)
-    ratings = Rating.objects.get(ISBN = ISBN)
+    book = Book.objects.get(ISBN = ISBN)
+    ratings = Rating.objects.filter(ISBN = book)
     totratings = ratings.count()
     
+    totstars = 0
     if ratings.count != 0:
         # find the cumulative rating 
         for r in ratings:
@@ -41,11 +42,20 @@ def book(request, ISBN):
         totstars = 0
         avgrating = 0
     
+    avgratingstars = "★" * int(avgrating) + "☆" * (5 - int(avgrating))
+    
     context_dict = {}
     context_dict['book'] = book
     context_dict['ISBN'] = ISBN
     context_dict['totratings'] = totratings
     context_dict['avgrating'] = avgrating
+    context_dict['avgratingstars'] = avgratingstars
+    
+    context_dict['author'] = book.author
+    context_dict['genre'] = book.genre
+    context_dict['description'] = book.blurb
+    
+    context_dict['reviews'] = ratings
     
     return render(request, 'bookcranny/book.html', context=context_dict)    
 

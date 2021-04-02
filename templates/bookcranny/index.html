@@ -31,7 +31,7 @@
 			{% if reviews %}
 				{% for review in reviews %}
 					<tr><td>
-						<b>{{ review.title }}</b> by {{ review.username }}
+						<b>{{ review.title }}</b>
 						<span style="float: right; font-size:1.5em">{{ review.as_stars }}</span>
 						<br/><br/>
 						{{ review.ISBN.title }} by {{ review.ISBN.author }}

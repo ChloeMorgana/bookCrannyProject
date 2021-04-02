@@ -1,0 +1,45 @@
+{% extends 'bookcranny/base.html' %}
+
+{% block title_block %} {{ book }} {% endblock %}
+{% block content_block %}
+
+<h1>{{ book }} <span style="float: right; font-size:1em">{{ avgratingstars }} ({{ totratings }})</span></h1>
+
+<div class="floatleftparagraphs">
+	<p>
+		ISBN: {{ ISBN }}
+	</p>
+	<p>
+		Author: {{ author }}
+	</p>
+	<p>
+		Genre: {{ genre }}
+	</p>
+	<p>
+		Description: {{ description }}
+	</p>
+</div>
+
+<table>
+	<tr><th>
+		Reviews
+	</th></tr>
+
+	{% if reviews %}
+		{% for review in reviews %}
+			<tr><td>
+				<b>{{ review.title }}</b>
+				<span style="float: right; font-size:1.5em">{{ review.as_stars }}</span>
+				<br/><br/>
+				<a href="{% url 'bookCranny:user' review.username %}" class="a_button">{{ review.username }}</a>
+				<a href="{% url 'bookCranny:rating' review.username review.ISBN.ISBN %}" class="a_button hb_right">Full Review</a>
+			</td></tr>
+		{% endfor %}
+	{% else %}
+		<tr><td>There are no reviews for this book in the database.</td></tr>
+	{% endif %}
+</table>
+
+
+
+{% endblock %}

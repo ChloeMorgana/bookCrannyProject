@@ -10,7 +10,7 @@ body {
 }
 
 .a_button {
-	border: 3px solid var(--fg-colour);
+	border: 2px solid var(--fg-colour);
 	display: inline-block;
 	margin: 3px;
 	padding: 2px;
@@ -50,4 +50,7 @@ td, th {
 	border: 1px solid var(--fg-colour);
 	padding: 5px;
 	font-size: 1.125em;
+}
+.floatleftparagraphs {
+	float:left;
 }
