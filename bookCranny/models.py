@@ -18,6 +18,7 @@ class Book(models.Model):
     blurb = models.CharField(max_length=1000)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     wishlist = models.ManyToManyField(Wishlist)
+    time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
