@@ -43,6 +43,8 @@ body {
 table {
 	border-collapse: collapse;
 	width: 40vw;
+	float: left;
+	margin: 1vw;
 }
 td, th {
 	border: 1px solid var(--fg-colour);
