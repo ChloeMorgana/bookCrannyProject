@@ -14,6 +14,7 @@ class Book(models.Model):
     author = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
@@ -34,3 +35,8 @@ class Rating(models.Model):
 
     def __str__(self):
         return str(self.stars)
+    
+    @property
+    def as_stars(self):
+        return "★" * self.stars + "☆" * (5 - self.stars)
+
