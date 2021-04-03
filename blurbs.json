@@ -1,0 +1,145 @@
+[
+	{
+		"model":"bookCranny.Book",
+		"ISBN":9780312150846,
+		"fields":{
+		"title":"The Colour of Magic",
+		"author":"Terry Pratchet",
+		"blurb":'''On a world supported on the back of a giant turtle (sex unknown),
+                       a gleeful, explosive, wickedly eccentric expedition sets out.
+                       There's an avaricious but inept wizard, a naive tourist whose luggage
+                       moves on hundreds of dear little legs, dragons who only exist if you believe in them,
+                       and of course THE EDGE of the planet ...'''}
+	}
+	{
+		"model":"bookCranny.Book",
+		"ISBN":9780261103306,
+		"fields":{
+		"title":"The Hobbit",
+		"author":"J.R.R Tolkien",
+		"blurb":'''BLURB'''}
+	}
+	{
+		"model":"bookCranny.Book",
+		"ISBN":9781594133299,
+		"fields":{
+		"title":"Twilight",
+		"author":"Stephanie Meyer",
+		"blurb":""}
+	}
+	{
+		"model":"bookCranny.Book",
+		"ISBN":9780192827609,
+		"fields":{
+		"title":"Pride and Prejudice",
+		"author":"Jane Austen",
+		"blurb":""}
+	}
+	{
+		"model":"bookCranny.Book",
+		"ISBN":9780375507908,
+		"fields":{
+		"title":"In Cold Blood",
+		"author":"Truman Capote",
+		"blurb":""}
+	}
+	{
+		"model":"bookCranny.Book",
+		"ISBN":9780006137122,
+		"fields":{
+		"title":"Murder On The Orient Express",
+		"author":"Agatha Christie",
+		"blurb":""}
+	}
+	{
+		"model":"bookCranny.User",
+		"username":"Steven"
+	}
+	{
+		"model":"bookCranny.User",
+		"username":"Arthur"
+	}
+	{
+		"model":"bookCranny.User",
+		"username":"Logan"
+	}
+	{
+		"model":"bookCranny.User",
+		"username":"Polly"
+	}
+	{
+		"model":"bookCranny.User",
+		"username":"Marilyn"
+	}
+	{
+		"model":"bookCranny.User",
+		"username":"Astrid"
+	}
+	{	
+		"model":"bookCranny.Genre",
+		"name":"Crime"
+	}
+	{
+		"model":"bookCranny.Genre",
+		"name":"Romance"
+	}
+	{
+		"model":"bookCranny.Genre",
+		"name":"Fantasy"
+	}
+	{
+		"model":"bookCranny.Rating",
+		"fields":{
+		"username":"Polly",
+		"ISBN":9780312150846,
+		"title":"This book is amazing!",
+		"review":'''I felt like I was being transported into another dimension whilst I was 
+				reading this. Absolutely wonderful!''',
+		"stars":5
+		}
+	}
+	{
+		"model":"bookCranny.Rating",
+		"fields":{
+		"username":"Logan",
+		"ISBN":9780312150846,
+		"title":"This book took me back",
+		"review":'''I felt like I was in my youth again''',
+		"stars":5
+		}
+	}
+	{
+		"model":"bookCranny.Rating",
+		"fields":{
+		"username":"Arthur",
+		"ISBN":9781594133299,
+		"title":"Worst book I've ever read in my life",
+		"review":'''I could barely get past the first page. I don't understand
+			the hype for this book at all. Twilight succ''',
+		"stars":0
+		}
+	}
+	{
+		"model":"bookCranny.Rating",
+		"fields":{
+		"username":"Steven",
+		"ISBN":9780261103306,
+		"title":"Emotional doesn't quite describe the experience",
+		"review":'''I've never been so inspired to live in Hobbiton.
+			Even the mention of Hobbiton is enough
+			to bring my flatmate to emotional wreckage''',
+		"stars":5
+		}
+	}
+	{
+		"model":"bookCranny.Wishlist",
+		"username":"Steven"
+		"fields":{
+		"book":[9780312150846,9780192827609]}
+	}
+	{
+		"model":"bookCranny.Wishlist",
+		"username":"Astrid"
+		"fields":{
+		"book":[9780375507908,9780192827609]}
+	}
