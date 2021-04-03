@@ -13,10 +13,14 @@ class Book(models.Model):
     author = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
-    time = models.DateTimeField(auto_now_add=True)
+    time = models.DateTimeField(auto_now_add=True, verbose_name="created time")
 
     def __str__(self):
         return self.title
+        
+    # for admin functionality, only show first 50 characters
+    def short_description(self):
+        return self.description if len(self.description) < 50 else (self.description[:50])
 
 class Wishlist(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)

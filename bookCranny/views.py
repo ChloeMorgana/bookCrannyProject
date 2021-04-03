@@ -33,7 +33,7 @@ def book(request, ISBN):
     totratings = ratings.count()
     
     totstars = 0
-    if ratings.count != 0:
+    if totratings != 0:
         # find the cumulative rating 
         for r in ratings:
             totstars += r.stars;

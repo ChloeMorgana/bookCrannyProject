@@ -2,8 +2,8 @@ from django.contrib import admin
 from bookCranny.models import Wishlist, Book, Rating, Genre
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('ISBN', 'title', 'author', 'genre')
-    
+    list_display = ('ISBN', 'title', 'author', 'genre', 'short_description', 'time')
+
     def has_change_permission(self, request, obj = None):
         if request.user.is_superuser:
             return True;

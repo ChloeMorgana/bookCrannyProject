@@ -22,7 +22,7 @@ class BookForm(forms.ModelForm):
     
     class Meta:
         model = Book
-        fields = ('ISBN', 'title', 'author', 'description')
+        fields = ('ISBN', 'title', 'author', 'genre', 'description')
 
 
 class RatingForm(forms.ModelForm):
