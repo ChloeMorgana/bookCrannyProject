@@ -59,7 +59,7 @@ def book(request, ISBN):
     
     return render(request, 'bookcranny/book.html', context=context_dict)    
 
-def rating(request, ISBN, user):
+def rating(request, ISBN, username):
     form = RatingForm()
     
     if request.method == 'POST':
@@ -76,7 +76,14 @@ def rating(request, ISBN, user):
     #ISBN of the reviewed book
     context_dict['ISBN'] = ISBN
     #username of the reviewer
-    context_dict['username'] = user
+    context_dict['username'] = username
+    
+    user = User.objects.get(username=username)
+    book = Book.objects.get(ISBN=ISBN)
+    context_dict["book"] = book
+    
+    rating = Rating.objects.get(username=user,ISBN=book)
+    context_dict["rating"]=rating
     
     return render(request, 'bookcranny/rating.html', context=context_dict)
 

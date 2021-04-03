@@ -54,3 +54,10 @@ td, th {
 .floatleftparagraphs {
 	float:left;
 }
+.ratingtextarea {
+	width: 100%;
+	height: 25em;
+}
+.hidden {
+	display: none;
+}

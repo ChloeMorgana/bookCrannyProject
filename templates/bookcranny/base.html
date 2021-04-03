@@ -6,7 +6,7 @@
 		<title>
 			Book Cranny | {% block title_block %} base page {% endblock %}
 		</title>
-		<link rel="stylesheet" href="/static/styles.css">
+		<link rel="stylesheet" href="{% static 'styles.css' %}">
 	</head>
 	<body>
 		<div id="header_bar">
@@ -14,6 +14,9 @@
 				Book Cranny
 			</a>
 			<a href="{% url 'bookCranny:books' %}" class="a_button large_a_button">
+				Books
+			</a>
+			<a href="{% url 'bookCranny:newbook' %}" class="a_button large_a_button">
 				New Book
 			</a>
 			<a href="{% url 'bookCranny:index' %}" class="a_button large_a_button hb_right">
