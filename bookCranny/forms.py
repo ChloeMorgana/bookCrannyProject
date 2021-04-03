@@ -16,7 +16,7 @@ class BookForm(forms.ModelForm):
     ISBN = forms.CharField(max_length=13, help_text = "Unique identifier of the book (10/13 digits long)")
     title = forms.CharField(max_length=100, help_text = "Title of the book")
     author = forms.CharField(max_length=50, help_text = "Author of the book")
-    description = forms.CharField(widget = forms.Textarea, max_length=1000, help_text = "Enter a short description for the book (maximum 1000 characters")
+    description = forms.CharField(widget = forms.Textarea, max_length=1000, help_text = "Enter a short description for the book (maximum 1000 characters", required = False)
     genre = forms.ChoiceField(choices = GENRES)
     
     
@@ -27,9 +27,9 @@ class BookForm(forms.ModelForm):
 
 class RatingForm(forms.ModelForm):
     title = forms.CharField(max_length=100, help_text="Please enter a title for your review")
-    stars = forms.DecimalField(widget=forms.HiddenInput(), min_value = 1, max_value = 5)
-    review = forms.CharField(widget = forms.Textarea, help_text = "(Optional) A detailed review of the book")
+    stars = forms.ChoiceField(choices = [1,2,3,4,5])
+    review = forms.CharField(widget = forms.Textarea, help_text = "(Optional) A detailed review of the book", required = False)
 
     class Meta:
         model = Rating
-        exclude = ('ISBN', 'username')
+        exclude = ('username', 'time')

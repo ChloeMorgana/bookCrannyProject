@@ -34,12 +34,13 @@ class Wishlist(models.Model):
     get_books_ISBN.short_description = 'ISBN'
 
 class Rating(models.Model):
+    STARS_CHOICES = [(1, 1), (2, 2), (3, 3), (4, 4), (5, 5)]
     ratingID = models.AutoField(primary_key=True)
     username = models.ForeignKey(User, on_delete=models.CASCADE)
-    ISBN = models.ForeignKey(Book, on_delete=models.CASCADE)
+    ISBN = models.ForeignKey(Book, on_delete=models.CASCADE, verbose_name="book title")
     title = models.CharField(max_length=100)
     review = models.CharField(max_length=1000, blank = True)
-    stars = models.IntegerField(default=0)
+    stars = models.IntegerField(choices = STARS_CHOICES)
     time = models.DateTimeField(auto_now_add=True, verbose_name="created time")
 
     def __str__(self):
