@@ -1,0 +1,148 @@
+[
+	{
+		"model":"bookCranny.Book",
+		"pk":9780312150846,
+		"fields":{
+			"title":"The Colour of Magic",
+			"author":"Terry Pratchet",
+			"genre":"Fantasy",
+			"description":"The Colour of Magic is a collection of four stories set on Discworld, a flat planet that is carried by four huge elephants that stand on the back of the giant turtle Great A'Tuin. The stories pivot on the hapless failed wizard Rincewind."}
+	},
+	{
+		"model":"bookCranny.Book",
+		"pk":9780261103306,
+		"fields":{
+			"title":"The Hobbit",
+			"author":"J.R.R Tolkien",
+			"genre": "Fantasy",
+			"description":"The Hobbit is set within Tolkien's fictional universe and follows the quest of home-loving Bilbo Baggins, the titular hobbit, to win a share of the treasure guarded by Smaug the dragon. Bilbo's journey takes him from light-hearted, rural surroundings into more sinister territory."}
+	},
+	{
+		"model":"bookCranny.Book",
+		"pk":9781594133299,
+		"fields":{
+			"title":"Twilight",
+			"author":"Stephanie Meyer",
+			"genre":"Romance",
+			"description":"Twilight is a series of fantasy/romance novels by Stephenie Meyer. It follows the life of Isabella Swan, a human teenager who moves to Forks, Washington and finds her life turned upside-down when she falls in love with a vampire named Edward Cullen."}
+	},
+	{
+		"model":"bookCranny.Book",
+		"pk":9780192827609,
+		"fields":{
+			"title":"Pride and Prejudice",
+			"author":"Jane Austen",
+			"genre": "Romance",
+			"description":"Pride and Prejudice follows the turbulent relationship between Elizabeth Bennet, the daughter of a country gentleman, and Fitzwilliam Darcy, a rich aristocratic landowner. They must overcome the titular sins of pride and prejudice in order to fall in love and marry."}
+	},
+	{
+		"model":"bookCranny.Book",
+		"pk":9780375507908,
+		"fields":{
+			"title":"In Cold Blood",
+			"author":"Truman Capote",
+			"genre": "Crime",
+			"description":"In Cold Blood is a non-fiction novel by American author Truman Capote, first published in 1966. It details the 1959 murders of four members of the Herbert Clutter family in the small farming community of Holcomb, Kansas."}
+	},
+	{
+		"model":"bookCranny.Book",
+		"pk":9780006137122,
+		"fields":{
+			"title":"Murder On The Orient Express",
+			"author":"Agatha Christie",
+			"genre":"Crime",
+			"description":"A group of passengers trapped on the Orient Express in a snow storm with a murdered body and a Belgian detective to keep them company: Murder on the Orient Express is one of Agatha Christie's most famous stories. ... Mrs Christie makes an improbable tale very real, and keeps her readers enthralled and guessing to the end."}
+	},
+	{
+		"model":"bookCranny.User",
+		"pk":"Steven"
+	},
+	{
+		"model":"bookCranny.User",
+		"pk":"Arthur"
+	},
+	{
+		"model":"bookCranny.User",
+		"pk":"Logan"
+	},
+	{
+		"model":"bookCranny.User",
+		"pk":"Polly"
+	},
+	{
+		"model":"bookCranny.User",
+		"pk":"Marilyn"
+	},
+	{
+		"model":"bookCranny.User",
+		"pk":"Astrid"
+	},
+	{	
+		"model":"bookCranny.Genre",
+		"pk":"Crime"
+	},
+	{
+		"model":"bookCranny.Genre",
+		"pk":"Romance"
+	},
+	{
+		"model":"bookCranny.Genre",
+		"pk":"Fantasy"
+	},
+	{
+		"model":"bookCranny.Rating",
+		"pk":1,
+		"fields":{
+		"username":"Polly",
+		"ISBN":9780312150846,
+		"title":"This book is amazing!",
+		"review":"I felt like I was being transported into another dimension whilst I was reading this. Absolutely wonderful!",
+		"stars":5
+		}
+	},
+	{
+		"model":"bookCranny.Rating",
+		"pk":2,
+		"fields":{
+		"username":"Logan",
+		"ISBN":9780312150846,
+		"title":"This book took me back",
+		"review":"I felt like I was in my youth again",
+		"stars":5
+		}
+	},
+	{
+		"model":"bookCranny.Rating",
+		"pk":3,
+		"fields":{
+		"username":"Arthur",
+		"ISBN":9781594133299,
+		"title":"Worst book I've ever read in my life",
+		"review":"I could barely get past the first page. I don't understand the hype for this book at all. Twilight succ",
+		"stars":0
+		}
+	},
+	{
+		"model":"bookCranny.Rating",
+		"pk":4,
+		"fields":{
+		"username":"Steven",
+		"ISBN":9780261103306,
+		"title":"Emotional doesn't quite describe the experience",
+		"review":"I've never been so inspired to live in Hobbiton. Even the mention of Hobbiton is enough to bring my flatmate to emotional wreckage",
+		"stars":5
+		}
+	},
+	{
+		"model":"bookCranny.Wishlist",
+		"username":"Steven",
+		"fields":{
+		"book":[9780312150846,9780192827609]}
+	},
+	{
+		"model":"bookCranny.Wishlist",
+		"username":"Astrid",
+		"fields":{
+		"book":[9780375507908,9780192827609]}
+	}
+]
