@@ -53,7 +53,7 @@ def book(request, ISBN):
     
     context_dict['author'] = book.author
     context_dict['genre'] = book.genre
-    context_dict['description'] = book.blurb
+    context_dict['description'] = book.description
     
     context_dict['reviews'] = ratings
     
@@ -90,7 +90,7 @@ def rating(request, ISBN, username):
 
 @login_required
 def newbook(request):
-    form = PageForm()
+    form = BookForm()
     
     if request.method == 'POST':
         form = BookForm(request.POST)
