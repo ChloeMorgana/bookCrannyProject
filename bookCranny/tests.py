@@ -40,8 +40,8 @@ class ModelTests(TestCase):
     def setUp(self):
         user_py = User.objects.create_user(username='TestUser')
         genre_py = Genre.objects.get_or_create(name='TestGenre')
-        book_py = Book.objects.get_or_create(ISBN = '1234567890', title='TestTitle', author='TestAuthor', blurb='TestBlurb', genre = genre_py[0])
-        Rating.objects.get_or_create(user = user_py, ISBN = str(book_py[0].ISBN), title='TestTitle', review='TestReview', stars= 5)
+        book_py = Book.objects.get_or_create(ISBN = '1234567890', title='TestTitle', author='TestAuthor', description='TestDescription', genre = genre_py[0])
+        Rating.objects.get_or_create(username = user_py, ISBN = book_py[0], title='TestTitle', review='TestReview', stars= 5)
 
     def test_book_model(self):
         """
@@ -53,8 +53,7 @@ class ModelTests(TestCase):
         self.assertEqual(book.ISBN, '1234567890', f"{FAILURE_HEADER}Tests on the Book model failed. Check you have all required attributes.{FAILURE_FOOTER}")
         self.assertEqual(book.title, 'TestTitle', f"{FAILURE_HEADER}Tests on the Book model failed. Check you have all required attributes.{FAILURE_FOOTER}")
         self.assertEqual(book.author, 'TestAuthor', f"{FAILURE_HEADER}Tests on the Book model failed. Check you have all required attributes.{FAILURE_FOOTER}")
-        self.assertEqual(book.author, 'TestAuthor', f"{FAILURE_HEADER}Tests on the Book model failed. Check you have all required attributes.{FAILURE_FOOTER}")
-        self.assertEqual(book.blurb, 'TestBlurb', f"{FAILURE_HEADER}Tests on the Book model failed. Check you have all required attributes.{FAILURE_FOOTER}")
+        self.assertEqual(book.description, 'TestDescription', f"{FAILURE_HEADER}Tests on the Book model failed. Check you have all required attributes.{FAILURE_FOOTER}")
         self.assertEqual(book.genre, genre_py, f"{FAILURE_HEADER}Tests on the Book model failed. Check you have all required attributes.{FAILURE_FOOTER}")
 
     def test_rating_model(self):
@@ -65,7 +64,7 @@ class ModelTests(TestCase):
         user_py = User.objects.get(username='TestUser')
         book_py = Book.objects.get(ISBN='1234567890')
         genre_py = Book.objects.get(ISBN='1234567890').genre
-        rating = Rating.objects.get(user = user_py, ISBN = book_py.ISBN)
+        rating = Rating.objects.get(username = user_py, ISBN = book_py)
         self.assertEqual(rating.title, 'TestTitle', f"{FAILURE_HEADER}Tests on the Rating model failed. Check you have all required attributes.{FAILURE_FOOTER}")
         self.assertEqual(rating.review, 'TestReview', f"{FAILURE_HEADER}Tests on the Rating model failed. Check you have all required attributes.{FAILURE_FOOTER}")
         self.assertEqual(rating.stars, 5, f"{FAILURE_HEADER}Tests on the Rating model failed. Check you have all required attributes.{FAILURE_FOOTER}")
@@ -77,7 +76,7 @@ class ModelTests(TestCase):
         user_py = User.objects.get(username='TestUser')
         book_py = Book.objects.get(ISBN='1234567890')
         genre_py = Genre.objects.get(name='TestGenre')
-        rating_py = Rating.objects.get(user = user_py, ISBN = str(book_py.ISBN))
+        rating_py = Rating.objects.get(username = user_py, ISBN = book_py)
         
         
         self.assertEqual(str(book_py), 'TestTitle', f"{FAILURE_HEADER}The __str__() method in the Book class has not been implemented correctly.{FAILURE_FOOTER}")
