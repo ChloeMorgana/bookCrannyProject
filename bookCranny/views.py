@@ -26,7 +26,7 @@ def books(request):
     if request.user.is_authenticated:
         reviews = Rating.objects.filter(username=request.user)
         # create a set of genres the user likes
-        liked_genres = {r.genre for r in reviews if r.stars >= 3}
+        liked_genres = {r.ISBN.genre for r in reviews if r.stars >= 3}
         books_in_liked_genres = []
         other_books = []
         for book in books_list:
