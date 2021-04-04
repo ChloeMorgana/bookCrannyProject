@@ -48,7 +48,7 @@ function get_details(response) {
 				// here we use this || "" thing to eliminate 'undefined' values
 				// if a field is missing, we want to leave it blank on the form, not fill it in with the word 'undefined'.
 				var title = volumeInfo["title"] || "";
-				var author = volumeInfo["author"] || "";
+				var author = volumeInfo["authors"] || "";
 				var description = volumeInfo["description"] || "";
 				
 				return {"title"      : title,
