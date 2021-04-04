@@ -20,6 +20,23 @@ class BookForm(forms.ModelForm):
     description = forms.CharField(widget = forms.Textarea, max_length=1000, help_text = "Enter a short description for the book (maximum 1000 characters)", required = False)
     genre = forms.ModelChoiceField(queryset = GENRES)
     
+    def clean(self):
+        title = self.cleaned_data['title']
+        author = self.cleaned_data['author']
+        ISBN = self.cleaned_data['ISBN']
+        try:
+            book = Book.objects.get(title=title, author = author)
+            if book.ISBN == ISBN:
+                msg = "Book with this ISBN already exists."
+                self.add_error('ISBN', msg)
+            else:
+                msg = "Book already exists under a different ISBN code."
+                self.add_error('title', msg)
+                self.add_error('author', msg)
+        except Book.DoesNotExist:
+            pass
+            
+    
     
     class Meta:
         model = Book
