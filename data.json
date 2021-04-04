@@ -1,148 +1,27 @@
-[
-	{
-		"model":"bookCranny.Book",
-		"pk":9780312150846,
-		"fields":{
-			"title":"The Colour of Magic",
-			"author":"Terry Pratchet",
-			"genre":"Fantasy",
-			"description":"The Colour of Magic is a collection of four stories set on Discworld, a flat planet that is carried by four huge elephants that stand on the back of the giant turtle Great A'Tuin. The stories pivot on the hapless failed wizard Rincewind."}
-	},
-	{
-		"model":"bookCranny.Book",
-		"pk":9780261103306,
-		"fields":{
-			"title":"The Hobbit",
-			"author":"J.R.R Tolkien",
-			"genre": "Fantasy",
-			"description":"The Hobbit is set within Tolkien's fictional universe and follows the quest of home-loving Bilbo Baggins, the titular hobbit, to win a share of the treasure guarded by Smaug the dragon. Bilbo's journey takes him from light-hearted, rural surroundings into more sinister territory."}
-	},
-	{
-		"model":"bookCranny.Book",
-		"pk":9781594133299,
-		"fields":{
-			"title":"Twilight",
-			"author":"Stephanie Meyer",
-			"genre":"Romance",
-			"description":"Twilight is a series of fantasy/romance novels by Stephenie Meyer. It follows the life of Isabella Swan, a human teenager who moves to Forks, Washington and finds her life turned upside-down when she falls in love with a vampire named Edward Cullen."}
-	},
-	{
-		"model":"bookCranny.Book",
-		"pk":9780192827609,
-		"fields":{
-			"title":"Pride and Prejudice",
-			"author":"Jane Austen",
-			"genre": "Romance",
-			"description":"Pride and Prejudice follows the turbulent relationship between Elizabeth Bennet, the daughter of a country gentleman, and Fitzwilliam Darcy, a rich aristocratic landowner. They must overcome the titular sins of pride and prejudice in order to fall in love and marry."}
-	},
-	{
-		"model":"bookCranny.Book",
-		"pk":9780375507908,
-		"fields":{
-			"title":"In Cold Blood",
-			"author":"Truman Capote",
-			"genre": "Crime",
-			"description":"In Cold Blood is a non-fiction novel by American author Truman Capote, first published in 1966. It details the 1959 murders of four members of the Herbert Clutter family in the small farming community of Holcomb, Kansas."}
-	},
-	{
-		"model":"bookCranny.Book",
-		"pk":9780006137122,
-		"fields":{
-			"title":"Murder On The Orient Express",
-			"author":"Agatha Christie",
-			"genre":"Crime",
-			"description":"A group of passengers trapped on the Orient Express in a snow storm with a murdered body and a Belgian detective to keep them company: Murder on the Orient Express is one of Agatha Christie's most famous stories. ... Mrs Christie makes an improbable tale very real, and keeps her readers enthralled and guessing to the end."}
-	},
-	{
-		"model":"bookCranny.User",
-		"pk":"Steven"
-	},
-	{
-		"model":"bookCranny.User",
-		"pk":"Arthur"
-	},
-	{
-		"model":"bookCranny.User",
-		"pk":"Logan"
-	},
-	{
-		"model":"bookCranny.User",
-		"pk":"Polly"
-	},
-	{
-		"model":"bookCranny.User",
-		"pk":"Marilyn"
-	},
-	{
-		"model":"bookCranny.User",
-		"pk":"Astrid"
-	},
-	{	
-		"model":"bookCranny.Genre",
-		"pk":"Crime"
-	},
-	{
-		"model":"bookCranny.Genre",
-		"pk":"Romance"
-	},
-	{
-		"model":"bookCranny.Genre",
-		"pk":"Fantasy"
-	},
-	{
-		"model":"bookCranny.Rating",
-		"pk":1,
-		"fields":{
-		"username":"Polly",
-		"ISBN":9780312150846,
-		"title":"This book is amazing!",
-		"review":"I felt like I was being transported into another dimension whilst I was reading this. Absolutely wonderful!",
-		"stars":5
-		}
-	},
-	{
-		"model":"bookCranny.Rating",
-		"pk":2,
-		"fields":{
-		"username":"Logan",
-		"ISBN":9780312150846,
-		"title":"This book took me back",
-		"review":"I felt like I was in my youth again",
-		"stars":5
-		}
-	},
-	{
-		"model":"bookCranny.Rating",
-		"pk":3,
-		"fields":{
-		"username":"Arthur",
-		"ISBN":9781594133299,
-		"title":"Worst book I've ever read in my life",
-		"review":"I could barely get past the first page. I don't understand the hype for this book at all. Twilight succ",
-		"stars":0
-		}
-	},
-	{
-		"model":"bookCranny.Rating",
-		"pk":4,
-		"fields":{
-		"username":"Steven",
-		"ISBN":9780261103306,
-		"title":"Emotional doesn't quite describe the experience",
-		"review":"I've never been so inspired to live in Hobbiton. Even the mention of Hobbiton is enough to bring my flatmate to emotional wreckage",
-		"stars":5
-		}
-	},
-	{
-		"model":"bookCranny.Wishlist",
-		"username":"Steven",
-		"fields":{
-		"book":[9780312150846,9780192827609]}
-	},
-	{
-		"model":"bookCranny.Wishlist",
-		"username":"Astrid",
-		"fields":{
-		"book":[9780375507908,9780192827609]}
-	}
-]
+[{"model": "bookCranny.genre", "pk": 1, "fields": {"name": "Fantasy"}},
+  {"model": "bookCranny.genre", "pk": 2, "fields": {"name": "Romance"}},
+  {"model": "bookCranny.genre", "pk": 3, "fields": {"name": "Crime"}},
+  {"model": "bookCranny.genre", "pk": 4, "fields": {"name": "Thriller"}},
+  {"model": "bookCranny.genre", "pk": 5, "fields": {"name": "Science"}},
+  {"model": "bookCranny.genre", "pk": 6, "fields": {"name": "History"}},
+  {"model": "bookCranny.genre", "pk": 7, "fields": {"name": "Science Fiction"}},
+  {"model": "bookCranny.genre", "pk": 8, "fields": {"name": "Art"}},
+  {"model": "bookCranny.genre", "pk": 9, "fields": {"name": "Existential"}},
+  {"model": "bookCranny.book", "pk": 1, "fields": {"ISBN": "9780312150846", "title": "The Colour of Magic", "author": "Terry Pratchet", "description": "The Colour of Magic is a collection of four stories set on Discworld, a flat planet that is carried by four huge elephants that stand on the back of the giant turtle Great A'Tuin. The stories pivot on the hapless failed wizard Rincewind.", "genre": 1, "time": "2021-04-04T13:28:00.636Z"}},
+  {"model": "bookCranny.book", "pk": 2, "fields": {"ISBN": "9780261103306", "title": "The Hobbit", "author": "J.R.R Tolkien", "description": "The Hobbit is set within Tolkien's fictional universe and follows the quest of home-loving Bilbo Baggins, the titular hobbit, to win a share of the treasure guarded by Smaug the dragon. Bilbo's journey takes him from light-hearted, rural surroundings into more sinister territory.", "genre": 1, "time": "2021-04-04T13:29:09.512Z"}},
+  {"model": "bookCranny.book", "pk": 3, "fields": {"ISBN": "9781594133299", "title": "Twilight", "author": "Stephenie Meyer", "description": "Twilight is a series of fantasy/romance novels by Stephenie Meyer. It follows the life of Isabella Swan, a human teenager who moves to Forks, Washington and finds her life turned upside-down when she falls in love with a vampire named Edward Cullen.", "genre": 2, "time": "2021-04-04T13:30:32.371Z"}},
+  {"model": "bookCranny.book", "pk": 4, "fields": {"ISBN": "9780192827609", "title": "Pride and Prejudice", "author": "Jane Austen", "description": "Pride and Prejudice follows the turbulent relationship between Elizabeth Bennet, the daughter of a country gentleman, and Fitzwilliam Darcy, a rich aristocratic landowner. They must overcome the titular sins of pride and prejudice in order to fall in love and marry.", "genre": 2, "time": "2021-04-04T13:32:10.048Z"}},
+  {"model": "bookCranny.book", "pk": 5, "fields": {"ISBN": "9780375507908", "title": "In Cold Blood", "author": "Truman Capote", "description": "In Cold Blood is a non-fiction novel by American author Truman Capote, first published in 1966. It details the 1959 murders of four members of the Herbert Clutter family in the small farming community of Holcomb, Kansas.", "genre": 3, "time": "2021-04-04T13:33:00.396Z"}},
+  {"model": "bookCranny.book", "pk": 6, "fields": {"ISBN": "9780006137122", "title": "Murder On The Orient Express", "author": "Agatha Christie", "description": "A group of passengers trapped on the Orient Express in a snow storm with a murdered body and a Belgian detective to keep them company: Murder on the Orient Express is one of Agatha Christie's most famous stories. ... Mrs Christie makes an improbable tale very real, and keeps her readers enthralled and guessing to the end.", "genre": 3, "time": "2021-04-04T13:33:54.631Z"}},
+  {"model": "auth.user", "pk": 1, "fields": {"password": "pbkdf2_sha256$150000$TagTn3kKMRMz$YtVhMzdLMbvtcPt0yv9YXwo9p1Gf0D8Hb/y0X+YwbFs=", "last_login": "2021-04-04T13:26:44.825Z", "is_superuser": true, "username": "morgana", "first_name": "", "last_name": "", "email": "2439047s@student.gla.ac.uk", "is_staff": true, "is_active": true, "date_joined": "2021-04-04T13:21:42.572Z", "groups": [], "user_permissions": []}},
+  {"model": "auth.user", "pk": 2, "fields": {"password": "pbkdf2_sha256$150000$8tkWpZgzSVZe$f0AC3jstf8KWZ7D27gK6wDP6ZOx30IE/+Ck5ISiguJY=", "last_login": null, "is_superuser": false, "username": "Steven", "first_name": "", "last_name": "", "email": "", "is_staff": false, "is_active": true, "date_joined": "2021-04-04T13:36:23.361Z", "groups": [], "user_permissions": []}},
+  {"model": "auth.user", "pk": 3, "fields": {"password": "pbkdf2_sha256$150000$VqvXCL5NcmMv$5KntsEylhLK99wF7Evb7aWLoMJWdKDKu8dPPy2X99qk=", "last_login": null, "is_superuser": false, "username": "Polly", "first_name": "", "last_name": "", "email": "", "is_staff": false, "is_active": true, "date_joined": "2021-04-04T13:37:56.046Z", "groups": [], "user_permissions": []}},
+  {"model": "auth.user", "pk": 4, "fields": {"password": "pbkdf2_sha256$150000$4vq8WwTSnxgS$rgWMcqU/TCuXidJPQ1mXNroLhxsQXoojCoyUomffQyk=", "last_login": null, "is_superuser": false, "username": "Logan", "first_name": "", "last_name": "", "email": "", "is_staff": false, "is_active": true, "date_joined": "2021-04-04T13:40:01.890Z", "groups": [], "user_permissions": []}},
+  {"model": "auth.user", "pk": 5, "fields": {"password": "pbkdf2_sha256$150000$zW79NTpLGxMm$ZbXmm01D9iSLUFhr6p1iIisdRPDY4YuM9J32A39dcUo=", "last_login": null, "is_superuser": false, "username": "Arthur", "first_name": "", "last_name": "", "email": "", "is_staff": false, "is_active": true, "date_joined": "2021-04-04T13:42:59.356Z", "groups": [], "user_permissions": []}},
+  {"model": "auth.user", "pk": 6, "fields": {"password": "pbkdf2_sha256$150000$VcN27u7nAaZC$vjdwx72XZHtRBCMzSm/J1PMaBqfTqA9qaCZA/Mt4n1g=", "last_login": null, "is_superuser": false, "username": "Astrid", "first_name": "", "last_name": "", "email": "", "is_staff": false, "is_active": true, "date_joined": "2021-04-04T13:47:23.980Z", "groups": [], "user_permissions": []}},
+  {"model": "bookCranny.wishlist", "pk": 4, "fields": {"time": "2021-04-04T13:48:18.550Z", "books": [4, 6]}},
+  {"model": "bookCranny.wishlist", "pk": 6, "fields": {"time": "2021-04-04T13:47:41.957Z", "books": [5, 6]}},
+  {"model": "bookCranny.rating", "pk": 1, "fields": {"username": 2, "ISBN": 2, "title": "Emotional doesn't quite describe the experience", "review": "I've never been so inspired to live in Hobbiton. Even the mention of Hobbiton is enough to bring my flatmate to emotional wreckage", "stars": 5, "time": "2021-04-04T13:37:21.442Z"}},
+  {"model": "bookCranny.rating", "pk": 2, "fields": {"username": 3, "ISBN": 1, "title": "This book is amazing!", "review": "I felt like I was being transported into another dimension whilst I was reading this. Absolutely wonderful!", "stars": 5, "time": "2021-04-04T13:39:25.069Z"}},
+  {"model": "bookCranny.rating", "pk": 3, "fields": {"username": 4, "ISBN": 1, "title": "This book took me back", "review": "I felt like I was in my youth again", "stars": 4, "time": "2021-04-04T13:40:41.475Z"}},
+  {"model": "bookCranny.rating", "pk": 4, "fields": {"username": 5, "ISBN": 3, "title": "Worst book I've ever read in my life", "review": "I could barely get past the first page. I don't understand the hype for this book at all. Twilight succ", "stars": 1, "time": "2021-04-04T13:43:29.010Z"}}]
