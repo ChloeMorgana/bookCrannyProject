@@ -1,0 +1,47 @@
+{% extends 'bookcranny/base.html' %}
+
+{% block title_block %} {{ username }} {% endblock %}
+{% block content_block %}
+
+<h1>{{ username }}</h1>
+
+
+		<table>
+			<tr><th>
+				Wishlist
+			</th></tr>
+
+			{% if books %}
+				{% for book in books %}
+					<tr><td>
+						{{ book.title }} by {{ book.author }}
+						<a href="{% url 'bookCranny:book' book.ISBN%}" class="a_button hb_right">View</a>
+					</td></tr>
+				{% endfor %}
+			{% else %}
+				<tr><td>This user's wishlist is empty.</td></tr>
+			{% endif %}
+		</table>
+
+		<table>
+			<tr><th>
+				Reviews
+			</th></tr>
+
+			{% if ratings %}
+				{% for review in ratings %}
+					<tr><td>
+						<b>{{ review.title }}</b>
+						<span style="float: right; font-size:1.5em">{{ review.as_stars }}</span>
+						<br/><br/>
+						{{ review.ISBN.title }} by {{ review.ISBN.author }}
+						<a href="{% url 'bookCranny:rating' review.username review.ISBN.ISBN %}" class="a_button hb_right">Full Review</a>
+					</td></tr>
+				{% endfor %}
+			{% else %}
+				<tr><td>This user has not reviewed any books.</td></tr>
+			{% endif %}
+		</table>
+
+
+{% endblock %}

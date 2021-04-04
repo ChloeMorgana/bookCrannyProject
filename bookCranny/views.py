@@ -147,8 +147,13 @@ class UserView(View):
         except User.DoesNotExist:
             return None
         
-        ratings = Rating.objects.filter(username = username).order_by('-time')
-        wishlist = Wishlist.objects.filter(username = username).order_by('-time')
+        ratings = Rating.objects.filter(username = user).order_by('-time')
+        try:
+            wishlist = Wishlist.objects.get(user=user.pk)
+        except Wishlist.DoesNotExist:
+            wishlist = Wishlist(user = user)
+            wishlist.save()
+
         
         return (ratings, wishlist)
     
@@ -161,7 +166,7 @@ class UserView(View):
         context_dict = {}
         context_dict['username'] = username
         context_dict['ratings'] = ratings
-        context_dict['wishlist'] = wishlist
+        context_dict['books'] = Book.objects.filter(wishlist=wishlist)
         
         return render(request, 'bookcranny/user.html', context=context_dict)
     
