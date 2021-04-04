@@ -16,15 +16,24 @@
 			<a href="{% url 'bookCranny:books' %}" class="a_button large_a_button">
 				Books
 			</a>
-			<a href="{% url 'bookCranny:newbook' %}" class="a_button large_a_button">
-				New Book
-			</a>
-			<a href="{% url 'bookCranny:index' %}" class="a_button large_a_button hb_right">
-				Sign Up
-			</a>
-			<a href="{% url 'bookCranny:index' %}" class="a_button large_a_button hb_right">
-				Log In
-			</a>
+			<!---New--->
+			{% if user.is_authenticated %}
+				<a href="{% url 'bookCranny:newbook' %}" class="a_button large_a_button">
+					New Book
+				</a>
+				Logged in: {{ user.username }}
+				<a href="{% url 'auth_logout' %}?next=/bookcranny/" class="a_button large_a_button hb_right">
+					Log out
+				</a>
+			{% else %}
+				<a href="{% url 'registration_register' %}" class="a_button large_a_button hb_right">
+					Sign Up
+				</a>
+				<a href="{% url 'auth_login' %}" class="a_button large_a_button hb_right">
+					Log In
+				</a>
+			{% endif %}
+			<!---New--->
 		</div>
 		<div id="content">
 			{% block content_block %}
