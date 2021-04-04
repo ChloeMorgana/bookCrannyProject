@@ -9,6 +9,7 @@ urlpatterns = [
     path('', views.index, name='index'), 
     path('bookcranny/', include('bookCranny.urls')), 
     path('admin/', admin.site.urls),
+    path('accounts/register/', views.register, name = 'register'),
     path('accounts/', include('registration.backends.simple.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

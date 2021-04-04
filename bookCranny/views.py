@@ -102,6 +102,22 @@ def rating(request, ISBN, username):
     
     return render(request, 'bookcranny/rating.html', context=context_dict)
 
+#override registration form
+def register(request):
+    form = UserForm()
+    
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect(reverse('bookCranny:index'))
+        else:
+            #DEBUG
+            print(form.errors)
+        
+    context_dict = {'form': form}
+    
+    return render(request, 'registration/register.html', context=context_dict)
 
 @login_required
 def newbook(request):
