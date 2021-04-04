@@ -110,6 +110,7 @@ def register(request):
         form = UserForm(request.POST)
         if form.is_valid():
             user = form.save()
+            login(request, user)
             return redirect(reverse('bookCranny:index'))
         else:
             #DEBUG
