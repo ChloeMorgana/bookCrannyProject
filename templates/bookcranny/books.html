@@ -1,0 +1,50 @@
+{% extends 'bookcranny/base.html' %}
+
+{% block title_block %} Books {% endblock %}
+{% block content_block %}
+
+<h1>Books</h1>
+
+
+		<table>
+			<tr><th>
+				{% if other_books %}
+					Books in genres you like
+				{% else %}
+					Books
+				{% endif %}
+			</th></tr>
+
+			{% if books %}
+				{% for book in books %}
+					<tr><td>
+						{{ book.title }} by {{ book.author }}
+						<a href="{% url 'bookCranny:book' book.ISBN%}" class="a_button hb_right">View</a>
+					</td></tr>
+				{% endfor %}
+			{% else %}
+				<tr><td>There are no books in the database.</td></tr>
+			{% endif %}
+		</table>
+		
+		{% if user.is_authenticated %}
+		<table>
+			<tr><th>
+				Other books
+			</th></tr>
+
+			{% if other_books %}
+				{% for book in other_books %}
+					<tr><td>
+						{{ book.title }} by {{ book.author }}
+						<a href="{% url 'bookCranny:book' book.ISBN%}" class="a_button hb_right">View</a>
+					</td></tr>
+				{% endfor %}
+			{% else %}
+				<tr><td>There are no books in the database.</td></tr>
+			{% endif %}
+		</table>
+		{% endif %}
+
+
+{% endblock %}

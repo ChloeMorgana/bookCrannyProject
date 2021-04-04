@@ -22,7 +22,22 @@ def books(request):
     books_list = Book.objects.order_by('-time')
     
     context_dict = {}
-    context_dict['books'] = books_list
+    
+    if request.user.is_authenticated:
+        reviews = Rating.objects.filter(username=request.user)
+        # create a set of genres the user likes
+        liked_genres = {r.genre for r in reviews if r.stars >= 3}
+        books_in_liked_genres = []
+        other_books = []
+        for book in books_list:
+            if book.genre in liked_genres:
+                books_in_liked_genres.append(book)
+            else:
+                other_books.append(book)
+        context_dict['books'] = books_in_liked_genres
+        context_dict['other_books'] = other_books
+    else:
+        context_dict['books'] = books_list
     
     return render(request, 'bookcranny/books.html', context=context_dict)
 
