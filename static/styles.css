@@ -61,3 +61,15 @@ td, th {
 .hidden {
 	display: none;
 }
+#login_form {
+	width: 25vw;
+	
+}
+#login_form p {
+	width: 100%;
+	font-size: 1.125em;
+}
+#login_form input {
+	float:right;
+	width: 20vw;
+}

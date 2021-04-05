@@ -6,16 +6,15 @@
 <h1>Login</h1>
 
 
-<form method="post" action=".">
+<form method="post" action="." id="login_form">
 	{% csrf_token %}
-	
 	{{ form.as_p }}
-	
-	<input type="submit" value="Log In" />
+	<!--<input type="submit" value="Log In"/>-->
+	<a href="javascript:document.getElementById('login_form').submit()" class="a_button">Log In</a>
 	<input type="hidden" name="next" value="{{ next }}" />
 </form>
 	<p>
-		Not registered?
-		<a href="{% url 'registration_register' %}">Register here!</a>
+		<b>Not registered?</b>
+		<a href="{% url 'registration_register' %}" class="a_button">Register here!</a>
 	</p>
 {% endblock %}
