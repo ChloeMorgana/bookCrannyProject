@@ -3,15 +3,36 @@
 {% block title_block %} {{ book }} {% endblock %}
 {% block content_block %}
 
+<script>
+var book_id = {{ book.id }};
+var user_id = {{ rating_user_id }};
+{% if rating %}
+	var num_stars = {{ rating.stars }};
+{% else %}
+	var num_stars = 3;
+{% endif %}
+var rating_title = "{{ rating.title }}";
+</script>
+
 <script type="text/javascript" src="{% static 'review.js' %}"></script>
 
 <h1>{{ rating.title }} <span style="float: right; font-size:1em">{{ rating.as_stars }}</span></h1>
 
 <p>
-	Reviewed by: <a href="{% url 'bookCranny:user' rating.username %}" class="a_button">{{ rating.username }}</a>
+	Reviewed by: <a href="{% url 'bookCranny:user' rating_username %}" class="a_button">{{ rating_username }}</a>
 </p>
 <p>
 	{{ book }} by {{ book.author }}
+</p>
+<p id="widgets_to_edit_review">
+	<span id="review_title_whole_thing" class="hidden">Review title: <input type="text" id="review_title_textbox"/></span>
+	<span id="star_widget" class="hidden">
+		<button onclick="remove_star()">-</button>
+		<span id="star_widget_stars">
+			★★★☆☆
+		</span>
+		<button onclick="add_star()">+</button>
+	</span>
 </p>
 <textarea class="ratingtextarea" id="ratingtextarea" readonly>{{ rating.review }}</textarea>
 
@@ -21,20 +42,18 @@
 	<a href="javascript:make_editable()" class="a_button" id="edit_btn">Edit</a>
 	<a href="javascript:location.reload()" class="a_button hidden" id="cancel_btn">Cancel</a>
 	
-	<a href="javascript:none" class="a_button hidden hb_right" id="submit_btn">Submit</a>
+	<a href="javascript:submit_rating()" class="a_button hidden hb_right" id="submit_btn">Submit</a>
 </p>
+
+<form id="rating_form" method="post" class="hidden" action=".">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Submit form" id="invisible_submit_button" class="unhidden" />
+</form>
+
 {% endif %}
 <!-- new -->
 
-{% comment %}
-<!-- editing existing reviews is in the wireframe but not in the spec, might not be implemented in time -->
-<p>
-	<a href="javascript:make_editable()" class="a_button" id="edit_btn">Edit</a>
-	<a href="javascript:location.reload()" class="a_button hidden" id="cancel_btn">Cancel</a>
-	
-	<a href="javascript:none" class="a_button hidden hb_right" id="submit_btn">Submit</a>
-</p>
-{% endcomment %}
 <p>
 	<a href="{% url 'bookCranny:book' book.ISBN %}" class="a_button hb_right">Back to the book</a>
 </p>

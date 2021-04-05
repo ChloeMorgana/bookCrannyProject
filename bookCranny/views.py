@@ -85,15 +85,26 @@ def rating(request, ISBN, username):
         rating = Rating.objects.get(username=user,ISBN=book)
         context_dict["rating"]=rating
         form = RatingForm(instance = rating)
-
+        rating_username = username
+        rating_user_id = rating.username.id
     except Rating.DoesNotExist:
         form = RatingForm()
+        rating_username = request.user.username
+        rating_user_id = request.user.id
     
     if request.method == 'POST':
-        form = RatingForm(request.POST, instance = rating)
+        form = RatingForm(request.POST)
         if form.is_valid():
-            rating = form.save()
-            return redirect(reverse('bookCranny:rating', username, ISBN))
+            if form.data["username"] == str(request.user.id):
+                try:
+                    existing_rating = Rating.objects.get(username=request.user,ISBN__id=int(form.data["ISBN"]))
+                    existing_rating.title = form.data["title"]
+                    existing_rating.review = form.data["review"]
+                    existing_rating.stars = int(form.data["stars"])
+                    existing_rating.save()
+                except Rating.DoesNotExist:
+                    rating = form.save()
+            return redirect(reverse('bookCranny:rating', kwargs={"username": username, "ISBN": ISBN}))
         else:
             #DEBUG
             print(form.errors)
@@ -102,6 +113,8 @@ def rating(request, ISBN, username):
     context_dict['ISBN'] = ISBN
     context_dict['username'] = username
     context_dict["book"] = book
+    context_dict["rating_username"] = rating_username
+    context_dict["rating_user_id"] = rating_user_id
     user_is_owner = (request.user.username==username)
     context_dict["user_is_owner"] = user_is_owner
     
@@ -149,7 +162,9 @@ def newbook(request):
     context_dict = {'form': form}
     
     return render(request, 'bookcranny/newbook.html', context=context_dict)
-    
+
+
+
 class UserView(View):
     def get_user_details(self, username):
         try:

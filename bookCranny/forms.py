@@ -50,4 +50,4 @@ class RatingForm(forms.ModelForm):
 
     class Meta:
         model = Rating
-        exclude = ('username', 'time', 'ISBN')
+        exclude = ('time',) # ('username', 'time', 'ISBN')
