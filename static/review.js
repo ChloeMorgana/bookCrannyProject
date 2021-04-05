@@ -1,5 +1,5 @@
 function make_editable() {
-	document.getElementById("star_widget_stars").innerText = STARS[num_stars];
+	update_stars();
 	document.getElementById("review_title_textbox").value = rating_title;
 	
 	document.getElementById("edit_btn").classList.add("hidden");
@@ -20,7 +20,13 @@ function submit_rating() {
 	document.getElementById("id_review").value = document.getElementById("ratingtextarea").value;
 	document.getElementById("id_stars").value = num_stars;
 	
-	document.getElementById("rating_form").submit();
+	if (document.getElementById("review_title_textbox").value == "") {
+		alert("You need to enter a title for your review first.");
+	} else if (document.getElementById("ratingtextarea").value == "") {
+		alert("You haven't entered your review.");
+	} else {
+		document.getElementById("rating_form").submit();
+	}
 }
 
 
@@ -34,9 +40,16 @@ var STARS = [
 ]
 function add_star() {
 	num_stars = Math.min(num_stars + 1, 5);
-	document.getElementById("star_widget_stars").innerText = STARS[num_stars];
+	update_stars();
 }
 function remove_star() {
 	num_stars = Math.max(num_stars - 1, 1);
+	update_stars();
+}
+function update_stars() {
 	document.getElementById("star_widget_stars").innerText = STARS[num_stars];
+	document.getElementById("big_star_span").innerText = STARS[num_stars];
+}
+function update_title() {
+	document.getElementById("big_title").innerText = document.getElementById("review_title_textbox").value;
 }

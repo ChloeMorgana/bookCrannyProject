@@ -16,7 +16,7 @@ var rating_title = "{{ rating.title }}";
 
 <script type="text/javascript" src="{% static 'review.js' %}"></script>
 
-<h1>{{ rating.title }} <span style="float: right; font-size:1em">{{ rating.as_stars }}</span></h1>
+<h1><span id="big_title">{{ rating.title }}</span> <span style="float: right; font-size:1em" id="big_star_span">{{ rating.as_stars }}</span></h1>
 
 <p>
 	Reviewed by: <a href="{% url 'bookCranny:user' rating_username %}" class="a_button">{{ rating_username }}</a>
@@ -25,7 +25,7 @@ var rating_title = "{{ rating.title }}";
 	{{ book }} by {{ book.author }}
 </p>
 <p id="widgets_to_edit_review">
-	<span id="review_title_whole_thing" class="hidden">Review title: <input type="text" id="review_title_textbox"/></span>
+	<span id="review_title_whole_thing" class="hidden" onkeyup="update_title()" onchange="update_title()">Review title: <input type="text" id="review_title_textbox"/></span>
 	<span id="star_widget" class="hidden">
 		<button onclick="remove_star()">-</button>
 		<span id="star_widget_stars">
