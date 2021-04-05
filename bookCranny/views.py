@@ -121,9 +121,19 @@ def rating(request, ISBN, username):
     
     return render(request, 'bookcranny/rating.html', context=context_dict)
 
+@login_required
+def deletereview(request, ISBN):
+    try:
+        rating = Rating.objects.get(username=request.user, ISBN__ISBN=ISBN)
+        rating.delete()
+    except Rating.DoesNotExist:
+        pass
+    return redirect(reverse('bookCranny:book', kwargs={"ISBN": ISBN}))
+
+"""
 def delete_rating(request, id, ISBN):
     Rating.objects.get(pk=id).delete()
-    return redirect(reverse('bookCranny:book', ISBN))
+    return redirect(reverse('bookCranny:book', ISBN))"""
 
 #override registration form
 def register(request):

@@ -40,6 +40,7 @@ var rating_title = "{{ rating.title }}";
 {% if user_is_owner %}
 <p>
 	<a href="javascript:make_editable()" class="a_button" id="edit_btn">Edit</a>
+	<a href="{% url 'bookCranny:deletereview' book.ISBN %}" class="a_button" id="delete_btn">Delete</a>
 	<a href="javascript:location.reload()" class="a_button hidden" id="cancel_btn">Cancel</a>
 	
 	<a href="javascript:submit_rating()" class="a_button hidden hb_right" id="submit_btn">Submit</a>
