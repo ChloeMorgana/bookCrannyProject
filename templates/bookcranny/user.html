@@ -16,6 +16,9 @@
 					<tr><td>
 						{{ book.title }} by {{ book.author }}
 						<a href="{% url 'bookCranny:book' book.ISBN%}" class="a_button hb_right">View</a>
+						{% if user_is_owner %}
+							<a href="{% url 'bookCranny:removefromwishlist' book.ISBN %}?redirectToUser=yes" class="a_button hb_right">Remove from wishlist</a>
+						{% endif %}
 					</td></tr>
 				{% endfor %}
 			{% else %}

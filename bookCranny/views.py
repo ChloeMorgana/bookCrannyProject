@@ -74,6 +74,12 @@ def book(request, ISBN):
     
     if request.user.is_authenticated:
         context_dict['username'] = request.user.username
+        try:
+            wishlist = Wishlist.objects.get(user=request.user)
+        except Wishlist.DoesNotExist:
+            wishlist = Wishlist(user = request.user)
+            wishlist.save()
+        context_dict['in_wishlist'] = book in wishlist.books.all()
     return render(request, 'bookcranny/book.html', context=context_dict)    
 
 
@@ -170,7 +176,36 @@ def newbook(request):
     
     return render(request, 'bookcranny/newbook.html', context=context_dict)
 
-
+@login_required
+def addtowishlist(request, ISBN):
+    book = Book.objects.get(ISBN = ISBN)
+    try:
+        wishlist = Wishlist.objects.get(user=request.user)
+    except Wishlist.DoesNotExist:
+        wishlist = Wishlist(user = request.user)
+        wishlist.save()
+    wishlist.books.add(book)
+    
+    if "redirectToUser" in request.GET and request.GET["redirectToUser"] == "yes":
+        return redirect(reverse('bookCranny:user', kwargs={"username": request.user.username}))
+    else:
+        return redirect(reverse('bookCranny:book', kwargs={"ISBN": ISBN}))
+ 
+@login_required
+def removefromwishlist(request, ISBN):
+    book = Book.objects.get(ISBN = ISBN)
+    try:
+        wishlist = Wishlist.objects.get(user=request.user)
+    except Wishlist.DoesNotExist:
+        wishlist = Wishlist(user = request.user)
+        wishlist.save()
+    wishlist.books.remove(book)
+    
+    if "redirectToUser" in request.GET and request.GET["redirectToUser"] == "yes":
+        return redirect(reverse('bookCranny:user', kwargs={"username": request.user.username}))
+    else:
+        return redirect(reverse('bookCranny:book', kwargs={"ISBN": ISBN}))
+    
 
 class UserView(View):
     def get_user_details(self, username):

@@ -11,4 +11,6 @@ urlpatterns = [
     path('review/<username>/<ISBN>/', views.rating, name='rating'),
     path('deletereview/<ISBN>/', views.deletereview, name='deletereview'),
     path('newbook/', views.newbook, name='newbook'),
+    path('addtowishlist/<ISBN>/', views.addtowishlist, name='addtowishlist'),
+    path('removefromwishlist/<ISBN>/', views.removefromwishlist, name='removefromwishlist'),
 ]

@@ -40,9 +40,16 @@
 	{% endif %}
 </table>
 
+<br/>
+<p></p>
 <!-- new -->
 {% if user.is_authenticated %}
-<a href="{% url 'bookCranny:rating' username ISBN %}" class="a_button large_a_button">Write a review</a>
+{% if in_wishlist %}
+<a href="{% url 'bookCranny:removefromwishlist' ISBN %}" class="a_button large_a_button">Remove from wishlist</a>
+{% else %}
+<a href="{% url 'bookCranny:addtowishlist' ISBN %}" class="a_button large_a_button">Add to wishlist</a>
+{% endif %}
+<a href="{% url 'bookCranny:rating' username ISBN %}" class="a_button large_a_button hb_right">Write a review</a>
 {% endif %}
 <!-- new -->
 
