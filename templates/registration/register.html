@@ -6,11 +6,11 @@
 
 {% block content_block %}
 <h1>Register Here</h1>
-<form method="post" action=".">
+<form method="post" action="." id="login_form">
 	{% csrf_token %}
 	
 	{{ form.as_p }}
 	
-	<input type="submit" value="Register" />
+	<a href="javascript:document.getElementById('login_form').submit()" class="a_button">Register</a>
 </form>
 {% endblock %}

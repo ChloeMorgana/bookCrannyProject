@@ -72,4 +72,29 @@ td, th {
 #login_form input {
 	float:right;
 	width: 20vw;
+	font-size: 1.125em;
+}
+#new_book_form {
+	width: 50vw;
+}
+#new_book_form p {
+	width: 100%;
+	font-size: 1.125em;
+}
+#new_book_form input {
+	float:right;
+	width: 30vw;
+	font-size: 1.125em;
+}
+#new_book_form select {
+	float:right;
+	width: 30vw;
+	font-size: 1.125em;
+}
+#new_book_form textarea {
+	float:right;
+	width: 30vw;
+}
+textarea {
+	font-size: 1.125em;
 }

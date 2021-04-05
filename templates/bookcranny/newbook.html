@@ -11,6 +11,8 @@
 			{{ form.as_p }}
 			<input type="submit" value="Submit form" id="invisible_submit_button" class="hidden" />
 		</form>
-		<a href="javascript:load_from_google_books()" class="a_button" id="load_gbooks_btn">Load from Google Books</a> (Must type ISBN first)
-		<a href="javascript:submit_form()" class="a_button hb_right" id="edit_btn">Add book to database</a>
+		<div style="display:inline-block;width:100%">
+			<a href="javascript:load_from_google_books()" class="a_button" id="load_gbooks_btn">Load from Google Books</a> (Must type ISBN first)
+			<a href="javascript:submit_form()" class="a_button hb_right" id="edit_btn">Add book to database</a>
+		</div>
 {% endblock %}
