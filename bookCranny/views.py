@@ -233,6 +233,7 @@ class UserView(View):
         context_dict = {}
         context_dict['username'] = username
         context_dict['ratings'] = ratings
+        context_dict['wishlist'] = wishlist
         context_dict['books'] = Book.objects.filter(wishlist=wishlist)
         user_is_owner = (request.user.username==username)
         context_dict["user_is_owner"] = user_is_owner
