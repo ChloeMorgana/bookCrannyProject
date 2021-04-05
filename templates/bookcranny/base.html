@@ -21,9 +21,11 @@
 				<a href="{% url 'bookCranny:newbook' %}" class="a_button large_a_button">
 					New Book
 				</a>
-				Logged in: {{ user.username }}
-				<a href="{% url 'auth_logout' %}?next=/bookcranny/" class="a_button large_a_button hb_right">
+				<a href="{% url 'auth_logout' %}?next={% url 'bookCranny:index' %}" class="a_button large_a_button hb_right">
 					Log out
+				</a>
+				<a href="{% url 'bookCranny:user' user.username %}" class="a_button large_a_button hb_right">
+					{{ user.username }}
 				</a>
 			{% else %}
 				<a href="{% url 'registration_register' %}" class="a_button large_a_button hb_right">

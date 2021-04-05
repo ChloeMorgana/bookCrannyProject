@@ -40,8 +40,7 @@
 	{% endif %}
 </table>
 
-<br/>
-<p></p>
+<div style="display:inline-block;width:100%">
 <!-- new -->
 {% if user.is_authenticated %}
 {% if in_wishlist %}
@@ -52,5 +51,5 @@
 <a href="{% url 'bookCranny:rating' username ISBN %}" class="a_button large_a_button hb_right">Write a review</a>
 {% endif %}
 <!-- new -->
-
+</div>
 {% endblock %}
