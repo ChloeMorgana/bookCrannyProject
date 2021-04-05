@@ -46,6 +46,7 @@ var rating_title = "{{ rating.title }}";
 	<a href="javascript:submit_rating()" class="a_button hidden hb_right" id="submit_btn">Submit</a>
 </p>
 
+
 <form id="rating_form" method="post" class="hidden" action=".">
 	{% csrf_token %}
 	{{ form.as_p }}
@@ -53,7 +54,10 @@ var rating_title = "{{ rating.title }}";
 </form>
 
 {% endif %}
-<!-- new -->
+
+{% if user_is_editing %}
+<body onLoad="javascript:make_editable();">
+{% endif %}
 
 <p>
 	<a href="{% url 'bookCranny:book' book.ISBN %}" class="a_button hb_right">Back to the book</a>

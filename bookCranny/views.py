@@ -79,6 +79,7 @@ def book(request, ISBN):
 
 def rating(request, ISBN, username):
     context_dict = {}
+    user_is_editing = False
     user = User.objects.get(username = username)
     book = Book.objects.get(ISBN=ISBN)
     try:
@@ -89,6 +90,7 @@ def rating(request, ISBN, username):
         rating_user_id = rating.username.id
     except Rating.DoesNotExist:
         form = RatingForm()
+        user_is_editing = True
         rating_username = request.user.username
         rating_user_id = request.user.id
     
@@ -108,7 +110,6 @@ def rating(request, ISBN, username):
         else:
             #DEBUG
             print(form.errors)
-    
     context_dict['form'] = form
     context_dict['ISBN'] = ISBN
     context_dict['username'] = username
@@ -117,7 +118,7 @@ def rating(request, ISBN, username):
     context_dict["rating_user_id"] = rating_user_id
     user_is_owner = (request.user.username==username)
     context_dict["user_is_owner"] = user_is_owner
-    
+    context_dict["user_is_editing"]=user_is_editing
     
     return render(request, 'bookcranny/rating.html', context=context_dict)
 
@@ -130,10 +131,6 @@ def deletereview(request, ISBN):
         pass
     return redirect(reverse('bookCranny:book', kwargs={"ISBN": ISBN}))
 
-"""
-def delete_rating(request, id, ISBN):
-    Rating.objects.get(pk=id).delete()
-    return redirect(reverse('bookCranny:book', ISBN))"""
 
 #override registration form
 def register(request):
