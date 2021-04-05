@@ -45,9 +45,9 @@ class BookForm(forms.ModelForm):
 
 class RatingForm(forms.ModelForm):
     title = forms.CharField(max_length=100, help_text="Please enter a title for your review")
-    stars = forms.ChoiceField(choices = [1,2,3,4,5])
+    stars = forms.IntegerField(min_value = 1, max_value = 5)
     review = forms.CharField(widget = forms.Textarea, help_text = "(Optional) A detailed review of the book", required = False)
 
     class Meta:
         model = Rating
-        exclude = ('username', 'time')
+        exclude = ('username', 'time', 'ISBN')

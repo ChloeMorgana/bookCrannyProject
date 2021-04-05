@@ -40,6 +40,10 @@
 	{% endif %}
 </table>
 
-
+<!-- new -->
+{% if user.is_authenticated %}
+<a href="{% url 'bookCranny:rating' username ISBN %}" class="a_button large_a_button">Write a review</a>
+{% endif %}
+<!-- new -->
 
 {% endblock %}

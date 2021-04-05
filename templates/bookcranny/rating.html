@@ -14,6 +14,18 @@
 	{{ book }} by {{ book.author }}
 </p>
 <textarea class="ratingtextarea" id="ratingtextarea" readonly>{{ rating.review }}</textarea>
+
+<!-- new -->
+{% if user_is_owner %}
+<p>
+	<a href="javascript:make_editable()" class="a_button" id="edit_btn">Edit</a>
+	<a href="javascript:location.reload()" class="a_button hidden" id="cancel_btn">Cancel</a>
+	
+	<a href="javascript:none" class="a_button hidden hb_right" id="submit_btn">Submit</a>
+</p>
+{% endif %}
+<!-- new -->
+
 {% comment %}
 <!-- editing existing reviews is in the wireframe but not in the spec, might not be implemented in time -->
 <p>

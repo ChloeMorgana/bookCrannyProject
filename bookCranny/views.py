@@ -72,35 +72,45 @@ def book(request, ISBN):
     
     context_dict['reviews'] = ratings
     
+    if request.user.is_authenticated:
+        context_dict['username'] = request.user.username
     return render(request, 'bookcranny/book.html', context=context_dict)    
 
+
 def rating(request, ISBN, username):
-    form = RatingForm()
+    context_dict = {}
+    user = User.objects.get(username = username)
+    book = Book.objects.get(ISBN=ISBN)
+    try:
+        rating = Rating.objects.get(username=user,ISBN=book)
+        context_dict["rating"]=rating
+        form = RatingForm(instance = rating)
+
+    except Rating.DoesNotExist:
+        form = RatingForm()
     
     if request.method == 'POST':
-        form = ReviewForm(request.POST)
+        form = RatingForm(request.POST, instance = rating)
         if form.is_valid():
             rating = form.save()
-            return redirect(reverse('bookCranny:book.html'))
+            return redirect(reverse('bookCranny:rating', username, ISBN))
         else:
             #DEBUG
             print(form.errors)
     
-    context_dict = {}
     context_dict['form'] = form
-    #ISBN of the reviewed book
     context_dict['ISBN'] = ISBN
-    #username of the reviewer
     context_dict['username'] = username
-    
-    user = User.objects.get(username=username)
-    book = Book.objects.get(ISBN=ISBN)
     context_dict["book"] = book
+    user_is_owner = (request.user.username==username)
+    context_dict["user_is_owner"] = user_is_owner
     
-    rating = Rating.objects.get(username=user,ISBN=book)
-    context_dict["rating"]=rating
     
     return render(request, 'bookcranny/rating.html', context=context_dict)
+
+def delete_rating(request, id, ISBN):
+    Rating.objects.get(pk=id).delete()
+    return redirect(reverse('bookCranny:book', ISBN))
 
 #override registration form
 def register(request):
@@ -167,6 +177,8 @@ class UserView(View):
         context_dict['username'] = username
         context_dict['ratings'] = ratings
         context_dict['books'] = Book.objects.filter(wishlist=wishlist)
+        user_is_owner = (request.user.username==username)
+        context_dict["user_is_owner"] = user_is_owner
         
         return render(request, 'bookcranny/user.html', context=context_dict)
     
@@ -189,6 +201,8 @@ class UserView(View):
         context_dict['ratings'] = ratings
         context_dict['wishlist'] = wishlist
         context_dict['form'] = form
+        user_is_owner = (request.user.username==username)
+        context_dict["user_is_owner"] = user_is_owner
         
         return render(request, 'bookcranny/user.html', context=context_dict)
         
