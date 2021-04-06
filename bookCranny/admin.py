@@ -34,7 +34,7 @@ class RatingForm(forms.ModelForm):
         exclude = ('time', )
 
 class RatingAdmin(admin.ModelAdmin):
-    list_filter = ('ISBN', 'username', 'time', 'ratingID')
+    list_filter = ('ISBN', 'username', 'time')
     list_display = ('ISBN', 'username', 'stars', 'title', 'short_review', 'time')    
     form = RatingForm
     
