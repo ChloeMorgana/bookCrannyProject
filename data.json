@@ -53,6 +53,24 @@
             "name": "Existential"
         }
     }, {
+        "model": "bookCranny.genre",
+        "pk": 10,
+        "fields": {
+            "name": "Horror"
+        }
+    }, {
+        "model": "bookCranny.genre",
+        "pk": 11,
+        "fields": {
+            "name": "Psychological Fiction"
+        }
+    }, {
+        "model": "bookCranny.genre",
+        "pk": 12,
+        "fields": {
+            "name": "Mystery"
+        }
+    }, {
         "model": "bookCranny.book",
         "pk": 1,
         "fields": {
@@ -119,11 +137,77 @@
             "time": "2021-04-04T13:33:54.631Z"
         }
     }, {
+        "model": "bookCranny.book",
+        "pk": 7,
+        "fields": {
+            "ISBN": "9781444846195",
+            "title": "The Midnight Library",
+            "author": "Matt Haig",
+            "description": "The Midnight Library is about Nora, a thirty-something woman who is regretful about her life and feels alienated and unneeded in this world. In the depths of her wallowing, she comes across the Midnight Library. In it, each book represents a portal into another variation of what her life could have been.",
+            "genre": 7,
+            "time": "2021-04-06T08:13:59.023Z"
+        }
+    }, {
+        "model": "bookCranny.book",
+        "pk": 8,
+        "fields": {
+            "ISBN": "9781004015368",
+            "title": "Anxious People",
+            "author": "Fredrik Backman",
+            "description": "Anxious People is the story of a bank robber and a group of hostages at an open house\u2026a bunch of idiots, really (in the most endearing sense of the word). But the real story behind the circumstances is about a bridge and so much more.",
+            "genre": 12,
+            "time": "2021-04-06T08:15:00.233Z"
+        }
+    }, {
+        "model": "bookCranny.book",
+        "pk": 9,
+        "fields": {
+            "ISBN": "9781524711771",
+            "title": "Transcendent Kingdom",
+            "author": "Yaa Gyasi",
+            "description": "Transcendent Kingdom is a deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief\u2013a novel about faith, science, religion, love. Exquisitely written, emotionally searing, this is an exceptionally powerful follow-up to Gyasi's phenomenal debut.",
+            "genre": 11,
+            "time": "2021-04-06T08:15:45.674Z"
+        }
+    }, {
+        "model": "bookCranny.book",
+        "pk": 10,
+        "fields": {
+            "ISBN": "9780451139764",
+            "title": "The Shining",
+            "author": "Stephen King",
+            "description": "The Shining centers on the life of Jack Torrance, a struggling writer and recovering alcoholic who accepts a position as the off-season caretaker of the historic Overlook Hotel in the Colorado Rockies.",
+            "genre": 10,
+            "time": "2021-04-06T08:16:23.105Z"
+        }
+    }, {
+        "model": "bookCranny.book",
+        "pk": 11,
+        "fields": {
+            "ISBN": "9780340364772",
+            "title": "It",
+            "author": "Stephen King",
+            "description": "The story follows the experiences of seven children as they are terrorized by an evil entity that exploits the fears of its victims to disguise itself while hunting its prey.",
+            "genre": 10,
+            "time": "2021-04-06T08:16:55.325Z"
+        }
+    }, {
+        "model": "bookCranny.book",
+        "pk": 12,
+        "fields": {
+            "ISBN": "9780345019547",
+            "title": "Jurassic Park",
+            "author": "Michael Crichton",
+            "description": "Jurassic Park is a 1990 science fiction novel written by Michael Crichton. A cautionary tale about genetic engineering, it presents the collapse of an amusement park showcasing genetically re-created dinosaurs to illustrate the mathematical concept of chaos theory and its real world implications.",
+            "genre": 7,
+            "time": "2021-04-06T08:17:38.307Z"
+        }
+    }, {
         "model": "auth.user",
         "pk": 1,
         "fields": {
             "password": "pbkdf2_sha256$150000$TagTn3kKMRMz$YtVhMzdLMbvtcPt0yv9YXwo9p1Gf0D8Hb/y0X+YwbFs=",
-            "last_login": "2021-04-04T13:26:44.825Z",
+            "last_login": "2021-04-06T08:10:55.971Z",
             "is_superuser": true,
             "username": "morgana",
             "first_name": "",
@@ -221,6 +305,23 @@
             "user_permissions": []
         }
     }, {
+        "model": "auth.user",
+        "pk": 7,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$oTPVMsaFOwNP$np8xD6quG94DFwXKq0YBPVqPng3mZndLQJ5O6WM1ARc=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Morgan",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-04-06T08:18:42.832Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    }, {
         "model": "bookCranny.wishlist",
         "pk": 4,
         "fields": {
@@ -233,6 +334,13 @@
         "fields": {
             "time": "2021-04-04T13:47:41.957Z",
             "books": [5, 6]
+        }
+    }, {
+        "model": "bookCranny.wishlist",
+        "pk": 7,
+        "fields": {
+            "time": "2021-04-06T08:30:16.933Z",
+            "books": [8, 10, 12]
         }
     }, {
         "model": "bookCranny.rating",
@@ -277,6 +385,116 @@
             "review": "I could barely get past the first page. I don't understand the hype for this book at all. Twilight succ",
             "stars": 1,
             "time": "2021-04-04T13:43:29.010Z"
+        }
+    }, {
+        "model": "bookCranny.rating",
+        "pk": 5,
+        "fields": {
+            "username": 4,
+            "ISBN": 10,
+            "title": "Now this is my sort of book",
+            "review": "I just love the build-up of suspense in this book. Stephen has done it again.",
+            "stars": 5,
+            "time": "2021-04-06T08:20:40.835Z"
+        }
+    }, {
+        "model": "bookCranny.rating",
+        "pk": 6,
+        "fields": {
+            "username": 6,
+            "ISBN": 10,
+            "title": "Not his best",
+            "review": "If you love Stephen King and you're his biggest fan then read this book. If not, grab a better one.",
+            "stars": 3,
+            "time": "2021-04-06T08:21:09.007Z"
+        }
+    }, {
+        "model": "bookCranny.rating",
+        "pk": 7,
+        "fields": {
+            "username": 4,
+            "ISBN": 11,
+            "title": "I was on the edge of my chair the whole time",
+            "review": "Clowns are terrifying and my therapist recommended that I read about them to reduce my fear. Did it work? absolutely not, but I enjoyed the thrill.",
+            "stars": 5,
+            "time": "2021-04-06T08:21:50.273Z"
+        }
+    }, {
+        "model": "bookCranny.rating",
+        "pk": 8,
+        "fields": {
+            "username": 4,
+            "ISBN": 12,
+            "title": "Better than the films",
+            "review": "I have no idea why the youths of today would rather watch weird CGI dinosaurs on screen when they can let their imagination run wild with this book. I shall give this to them next time I hear the little rascals talk about anything other than reading.",
+            "stars": 4,
+            "time": "2021-04-06T08:22:30.219Z"
+        }
+    }, {
+        "model": "bookCranny.rating",
+        "pk": 9,
+        "fields": {
+            "username": 5,
+            "ISBN": 9,
+            "title": "This book really hits home for me",
+            "review": "Hearing about Gifty and all of the troubles she endured really reminded me of my own life. I would recommend this to anyone who feels like they're alone in this world.",
+            "stars": 5,
+            "time": "2021-04-06T08:23:16.813Z"
+        }
+    }, {
+        "model": "bookCranny.rating",
+        "pk": 10,
+        "fields": {
+            "username": 5,
+            "ISBN": 8,
+            "title": "It gave me a chuckle",
+            "review": "I found this book very endearing and funny.",
+            "stars": 5,
+            "time": "2021-04-06T08:24:10.474Z"
+        }
+    }, {
+        "model": "bookCranny.rating",
+        "pk": 11,
+        "fields": {
+            "username": 5,
+            "ISBN": 7,
+            "title": "Really made me re-evaluate my life",
+            "review": "There's so much to reflect upon after reading this that my brain has melted.",
+            "stars": 5,
+            "time": "2021-04-06T08:24:44.104Z"
+        }
+    }, {
+        "model": "bookCranny.rating",
+        "pk": 12,
+        "fields": {
+            "username": 7,
+            "ISBN": 6,
+            "title": "I was so stressed the whole time!",
+            "review": "If I was stuck on a train with a murderer I have no idea what the heck I would do! This book is quite good though. Would definitely recommend.",
+            "stars": 3,
+            "time": "2021-04-06T08:25:54.248Z"
+        }
+    }, {
+        "model": "bookCranny.rating",
+        "pk": 13,
+        "fields": {
+            "username": 2,
+            "ISBN": 11,
+            "title": "I like horror and this was good",
+            "review": "I would've given it five stars, but Stephen's name is too similar to my own and I dislike that.",
+            "stars": 2,
+            "time": "2021-04-06T08:26:28.985Z"
+        }
+    }, {
+        "model": "bookCranny.rating",
+        "pk": 14,
+        "fields": {
+            "username": 6,
+            "ISBN": 2,
+            "title": "Too many wizards and too much magic tbh",
+            "review": "Honestly don't understand why everybody talks about the Hobbit. It's not that great and it isn't realistic enough.",
+            "stars": 1,
+            "time": "2021-04-06T08:28:15.923Z"
         }
     }
 ]
